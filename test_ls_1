@@ -1,0 +1,28 @@
+from task2 import check_command_output
+import  pytest
+
+folder_in = "/home/am/Folder_in"
+folder_exe = "/home/am/Folder_exe"
+folder_out = "/home/am/Folder_out"
+
+
+def test_step_1():
+    assert check_command_output(f'cd {folder_in}; 7z a {folder_out}/arch_1', "Everything is Ok")
+
+
+
+if __name__ == '__main__':
+    pytest.main(["-vv"])
+
+def test_step_2():
+    assert check_command_output(f'cd {folder_out}; 7z d arch_1', 'Everything is Ok')
+
+def test_step_3():
+    assert check_command_output(f'cd {folder_out}/arch_1; 7z a File1.txt', 'Everything is Ok')
+
+def test_step_4():
+    assert check_command_output(f'cd {folder_out}; 7z l arch_1', 'Everything is Ok')
+    
+
+def test_step_5():
+    assert check_command_output(f'cd {folder_out}; 7z h arch_1', 'Everything is Ok')
